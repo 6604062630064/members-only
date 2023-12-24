@@ -9,7 +9,7 @@ exports.homepage_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.signup_get = asyncHandler(async (req, res, next) => {
-	res.sendStatus(404);
+	res.render("register");
 });
 
 exports.signup_post = asyncHandler(async (req, res, next) => {

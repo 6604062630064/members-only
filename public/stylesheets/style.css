@@ -129,8 +129,62 @@ table {
 }
 
 body {
+	box-sizing: border-box;
 	font-family: "Roboto", sans-serif;
 }
 h1 {
 	font-size: 2rem;
+}
+
+.regis-box {
+	border: 3px solid black;
+	margin-top: 150px;
+	margin-left: 725px;
+	margin-right: 725px;
+	padding: 25px;
+}
+
+.regis-box > form {
+	display: flex;
+	flex-direction: column;
+}
+
+form.regis-form > h1 {
+	align-self: center;
+	margin-bottom: 17px;
+}
+
+form.regis-form > p {
+	align-self: center;
+	font-weight: 100;
+	color: rgb(75, 75, 75);
+	margin-bottom: 17px;
+}
+
+form.regis-form label {
+	margin-bottom: 7px;
+}
+
+form.regis-form input:not(:last-child) {
+	height: 31px;
+	margin-bottom: 27px;
+	border: 1px solid gray;
+	border-radius: 4px;
+}
+
+form.regis-form input:not(:last-child):focus {
+	border-color: hsl(212, 100%, 49%);
+	box-shadow: 0px 0px 15px #6ea2de;
+}
+
+input.regis-submit-button {
+	height: 50px;
+	background-color: #0275f8;
+	border: 1px solid #0275f8;
+	color: white;
+	font-size: 1.4rem;
+}
+
+input.regis-submit-button:hover {
+	background-color: #268afc;
 }
