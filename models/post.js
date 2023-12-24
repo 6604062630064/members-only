@@ -8,7 +8,7 @@ const postSchema = new Schema({
 	timestamp: { type: Date, required: true },
 });
 
-postSchema.virtual("url").get(() => {
+postSchema.virtual("url").get(function () {
 	return "/posts/" + this._id;
 });
 
