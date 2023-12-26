@@ -178,7 +178,7 @@ form.regis-form input:not(:last-child):focus {
 }
 
 input.regis-submit-button {
-	height: 50px;
+	min-height: 50px;
 	background-color: #0275f8;
 	border: 1px solid #0275f8;
 	color: white;

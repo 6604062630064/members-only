@@ -8,3 +8,6 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     block content
+
+  if (typeof extraScript !== 'undefined')
+        script(src="/javascripts/script.js")

@@ -6,9 +6,13 @@ block content
         h1 Create an account
         p One account for everything.
         label(for="username") Username
-        input(type="text", name="username", id="username", required, pattern="^[a-zA-Z0-9 ]+$", minlength=5, mixlength=13)
+        input(type="text", name="username", id="username", required, pattern="^([\w-]+)$", minlength=5, mixlength=13)
         label(for="password") Password
-        input(type="password", name="password", id="password", required, pattern="^[a-zA-Z0-9 ]+$", minlength=6, maxlength=16)
+        input(type="password", name="password", id="password", required, pattern="^([\w-]+)$", minlength=6, maxlength=16)
         label(for="cpassword") Confirm Password
-        input(type="password", name="cpassword", id="cpassword", required, pattern="^[a-zA-Z0-9 ]+$")
+        input(type="password", name="cpassword", id="cpassword", required, pattern="^([\w-]+)$")
         input.regis-submit-button(type="submit", value="Create an account") 
+        span.warning
+        if (typeof errorMessages !== 'undefined')
+          for message in errorMessages
+            span #{message.msg}

@@ -1,16 +1,19 @@
+require("dotenv").config();
+const mongoose = require("mongoose");
 var createError = require("http-errors");
 var express = require("express");
 const session = require("express-session");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-
+const KEY = process.env.KEY;
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
 var app = express();
 
 // view engine setup
+mongoose.connect(KEY);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 const sess = {
