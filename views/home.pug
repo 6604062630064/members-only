@@ -1,28 +1,34 @@
 extends layout
 
 block content
-    .header
-        .name 
-            img(src="", alt="")
-            if (user)
-                h2 #{user.username}
-            else
-                h2 Message Board
+    .home-container
+        .header
+            .name 
+                img(src="", alt="")
+                if (user)
+                    h2 #{user.username}
+                else
+                    h2 Message Board
 
-        if (user) 
-            .login-form 
-                    form(action="/logout", method="post") 
-                        input.login-button(type="submit", value="Logout", name="logout", id="logout") 
-            
-        else  
-            .login-form 
-                form(action="/login", method="post") 
-                    input(type="text", name="username", id="username", placeholder="username", required, role="presentation", autocomplete="new-password")
-                    input(type="password", name="password", id="password", placeholder="password", required, role="presentation", autocomplete="new-password")
-                    input.login-button(type="submit", value="Login", name="login", id="login")  
-            
+            if (user) 
+                .login-form 
+                        form(action="/logout", method="post") 
+                            input.login-button(type="submit", value="Logout", name="logout", id="logout") 
+                
+            else  
+                .login-form 
+                    form(action="/login", method="post") 
+                        input(type="text", name="username", id="username", placeholder="username", required, role="presentation", autocomplete="new-password")
+                        input(type="password", name="password", id="password", placeholder="password", required, role="presentation", autocomplete="new-password")
+                        input.login-button(type="submit", value="Login", name="login", id="login")  
+                
 
 
-    .content
-        .bg 
-            .inner-content 
+        .content
+            .bg 
+                each post in posts
+                    .post
+                        h1 #{post.title}
+                        h3 posted by #{post.posted_by.username},  #{moment(post.timestamp).fromNow()}
+                        p #{post.body} 
+

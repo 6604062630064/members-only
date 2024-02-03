@@ -131,6 +131,7 @@ table {
 body {
 	box-sizing: border-box;
 	font-family: "Roboto", sans-serif;
+	height: 100%;
 }
 h1 {
 	font-size: 2rem;
@@ -191,7 +192,7 @@ input.regis-submit-button:hover {
 
 .header {
 	padding: 10px;
-	height: 50px;
+	min-height: 50px;
 	border: 1px solid black;
 	display: flex;
 	justify-content: space-between;
@@ -227,4 +228,33 @@ input.regis-submit-button:hover {
 
 .login-button:hover {
 	background-color: #fce2be;
+}
+
+.home-container {
+}
+
+.bg {
+	padding-left: 600px;
+	padding-right: 600px;
+	background-color: #fff6e9;
+	min-height: 100vh;
+	padding-top: 15px;
+}
+
+.post {
+	background-color: #bbe2ec;
+	padding: 13px;
+	margin-bottom: 20px;
+}
+
+.post > h3 {
+	padding-bottom: 6px;
+	border-bottom: 1px solid #000000;
+}
+
+.post > p {
+	margin-top: 13px;
+}
+html {
+	height: 100%;
 }

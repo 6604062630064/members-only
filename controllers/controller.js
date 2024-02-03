@@ -6,7 +6,9 @@ const asyncHandler = require("express-async-handler");
 
 const passport = require("passport");
 exports.homepage_get = asyncHandler(async (req, res, next) => {
-	res.render("home", { title: "Express", user: req.user });
+	const post = await Post.find({}).populate("posted_by").exec();
+
+	res.render("home", { title: "Express", user: req.user, posts: post });
 });
 
 exports.signup_get = asyncHandler(async (req, res, next) => {

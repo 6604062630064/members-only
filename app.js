@@ -18,6 +18,7 @@ var app = express();
 
 // view engine setup
 mongoose.connect(KEY);
+app.locals.moment = require("moment");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
