@@ -53,7 +53,14 @@ passport.deserializeUser(async (id, done) => {
 	}
 });
 
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(
+	session({
+		secret: "cats",
+		resave: false,
+		saveUninitialized: true,
+		cookie: { maxAge: 60000 },
+	})
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(logger("dev"));

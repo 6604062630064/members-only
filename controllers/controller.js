@@ -7,7 +7,6 @@ const asyncHandler = require("express-async-handler");
 const passport = require("passport");
 exports.homepage_get = asyncHandler(async (req, res, next) => {
 	const post = await Post.find({}).populate("posted_by").exec();
-
 	res.render("home", { title: "Express", user: req.user, posts: post });
 });
 
@@ -79,12 +78,39 @@ exports.logout_post = [
 ];
 
 exports.secretPage_get = asyncHandler(async (req, res, next) => {
-	res.sendStatus(404);
+	if (req.user === undefined) {
+		res.sendStatus(403);
+	} else if (req.user.role === "member") {
+		res.send("You have already been promoted to a member!");
+	} else {
+		res.render("secret");
+	}
 });
 
-exports.secretPage_post = asyncHandler(async (req, res, next) => {
-	res.sendStatus(404);
-});
+exports.secretPage_post = [
+	body("code").matches(/11111/i).withMessage("Invalid Code").escape(),
+	asyncHandler(async (req, res, next) => {
+		const result = validationResult(req);
+		if (!result.isEmpty()) {
+			res.render("secret", { errorMessages: result.array() });
+			return 0;
+		}
+
+		const user = await User.findOneAndUpdate(
+			{ _id: req.user._id },
+			{ role: "member" },
+			{
+				returnOriginal: false,
+			}
+		);
+
+		if (user) {
+			res.redirect("/home");
+		} else {
+			res.sendStatus("404");
+		}
+	}),
+];
 
 exports.createPost_get = asyncHandler(async (req, res, next) => {
 	res.sendStatus(404);

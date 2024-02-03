@@ -12,8 +12,9 @@ block content
 
             if (user) 
                 .login-form 
-                        form(action="/logout", method="post") 
-                            input.login-button(type="submit", value="Logout", name="logout", id="logout") 
+                        form(action="/logout", method="post")
+                            input.login-button(type="button", onClick="javascript:window.open('/secret', '_blank');", value="Get accese to membership", name="member", id="member")
+                            input.login-button(type="submit", value="Logout", name="logout", id="logout")
                 
             else  
                 .login-form 
@@ -29,6 +30,9 @@ block content
                 each post in posts
                     .post
                         h1 #{post.title}
-                        h3 posted by #{post.posted_by.username},  #{moment(post.timestamp).fromNow()}
+                        if (user === undefined)
+                            h3 posted by annoymous,  #{moment(post.timestamp).fromNow()}
+                        else 
+                            h3 posted by #{user.role == "member" ? post.posted_by.username : "annoymous"},  #{moment(post.timestamp).fromNow()}
                         p #{post.body} 
 
