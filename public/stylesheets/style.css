@@ -188,3 +188,43 @@ input.regis-submit-button {
 input.regis-submit-button:hover {
 	background-color: #268afc;
 }
+
+.header {
+	padding: 10px;
+	height: 50px;
+	border: 1px solid black;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #40a2e3;
+}
+
+.name {
+	display: flex;
+}
+.header h2 {
+	font-size: 1.7rem;
+	font-weight: 600;
+	color: white;
+}
+
+.content {
+	background-color: #f3f8fc;
+	width: 100%;
+	float: left;
+}
+
+.login-form > form {
+	display: flex;
+	gap: 7px;
+}
+
+.login-button {
+	min-width: 50px;
+	background-color: #fff6e9;
+	border: none;
+}
+
+.login-button:hover {
+	background-color: #fce2be;
+}

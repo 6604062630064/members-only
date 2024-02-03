@@ -4,8 +4,9 @@ const User = require("../models/user");
 const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
+const passport = require("passport");
 exports.homepage_get = asyncHandler(async (req, res, next) => {
-	res.render("index", { title: "Express" });
+	res.render("home", { title: "Express", user: req.user });
 });
 
 exports.signup_get = asyncHandler(async (req, res, next) => {
@@ -56,14 +57,37 @@ exports.signup_post = [
 	}),
 ];
 
-exports.login_post = asyncHandler(async (req, res, next) => {
-	res.sendStatus(404);
-});
+exports.login_post = [
+	passport.authenticate("local", {
+		successRedirect: "/home",
+		failureRedirect: "/home",
+	}),
+	asyncHandler(async (req, res, next) => {}),
+];
+
+exports.logout_post = [
+	asyncHandler(async (req, res, next) => {
+		req.logout((err) => {
+			if (err) {
+				return next(err);
+			}
+			res.redirect("/home");
+		});
+	}),
+];
 
 exports.secretPage_get = asyncHandler(async (req, res, next) => {
 	res.sendStatus(404);
 });
 
 exports.secretPage_post = asyncHandler(async (req, res, next) => {
+	res.sendStatus(404);
+});
+
+exports.createPost_get = asyncHandler(async (req, res, next) => {
+	res.sendStatus(404);
+});
+
+exports.createPost_post = asyncHandler(async (req, res, next) => {
 	res.sendStatus(404);
 });
