@@ -258,3 +258,7 @@ input.regis-submit-button:hover {
 html {
 	height: 100%;
 }
+
+.textarea {
+	height: 45px;
+}

@@ -13,7 +13,8 @@ block content
             if (user) 
                 .login-form 
                         form(action="/logout", method="post")
-                            input.login-button(type="button", onClick="javascript:window.open('/secret', '_blank');", value="Get accese to membership", name="member", id="member")
+                            input.login-button(type="button", onClick="javascript:window.open('/create', '_blank');", value="Post", name="post", id="post")
+                            input.login-button(type="button", onClick="javascript:window.open('/secret', '_blank');", value="Get accese to membership", name="member", id="member") 
                             input.login-button(type="submit", value="Logout", name="logout", id="logout")
                 
             else  
@@ -21,7 +22,8 @@ block content
                     form(action="/login", method="post") 
                         input(type="text", name="username", id="username", placeholder="username", required, role="presentation", autocomplete="new-password")
                         input(type="password", name="password", id="password", placeholder="password", required, role="presentation", autocomplete="new-password")
-                        input.login-button(type="submit", value="Login", name="login", id="login")  
+                        input.login-button(type="submit", value="Login", name="login", id="login") 
+                        input.login-button(type="button", onClick="javascript:window.open('/register', '_blank');", value="Register", name="register", id="register")  
                 
 
 

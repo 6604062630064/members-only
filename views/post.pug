@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  .regis-box
+    form.regis-form(action="/create", method="post") 
+        label(for="title") Title
+        input(type="text", name="title", id="title", required, maxlength=60, role="presentation", autocomplete="new-password")
+        label(for="body") Body
+        input.textarea(type="textarea", name="body", id="body", required, maxlength=1000,) 
+        input.regis-submit-button(type="submit", value="Post") 
+        span.warning
+        if (typeof errorMessages !== 'undefined')
+          for message in errorMessages
+            span #{message.msg}

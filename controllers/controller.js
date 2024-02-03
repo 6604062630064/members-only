@@ -6,7 +6,10 @@ const asyncHandler = require("express-async-handler");
 
 const passport = require("passport");
 exports.homepage_get = asyncHandler(async (req, res, next) => {
-	const post = await Post.find({}).populate("posted_by").exec();
+	const post = await Post.find({})
+		.populate("posted_by")
+		.sort({ timestamp: -1 })
+		.exec();
 	res.render("home", { title: "Express", user: req.user, posts: post });
 });
 
@@ -113,9 +116,43 @@ exports.secretPage_post = [
 ];
 
 exports.createPost_get = asyncHandler(async (req, res, next) => {
-	res.sendStatus(404);
+	if (req.user === undefined) {
+		res.sendStatus(403);
+	} else {
+		res.render("post");
+	}
 });
 
-exports.createPost_post = asyncHandler(async (req, res, next) => {
-	res.sendStatus(404);
-});
+exports.createPost_post = [
+	body("title")
+		.isLength({ min: 1, max: 60 })
+		.withMessage("Title: Invalid length")
+		.escape(),
+	body("body")
+		.isLength({ min: 1, max: 1000 })
+		.withMessage("Body: Invalid lenght")
+		.escape(),
+	asyncHandler(async (req, res, next) => {
+		const result = validationResult(req);
+		if (!result.isEmpty()) {
+			res.render("post", { errorMessages: result.array() });
+			return 0;
+		}
+
+		const newPost = new Post({
+			title: req.body.title,
+			body: req.body.body,
+			posted_by: req.user._id,
+			timestamp: new Date(),
+		});
+
+		newPost
+			.save()
+			.then(() => {
+				res.redirect("/home");
+			})
+			.catch((err) => {
+				res.sendStatus(404);
+			});
+	}),
+];

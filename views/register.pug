@@ -6,7 +6,7 @@ block content
         h1 Create an account
         p One account for everything.
         label(for="username") Username
-        input(type="text", name="username", id="username", required, pattern="^([\w-]+)$", minlength=5, mixlength=13, role="presentation", autocomplete="new-password")
+        input(type="text", name="username", id="username", required, pattern="^([\w-]+)$", minlength=5, maxlength=13, role="presentation", autocomplete="new-password")
         label(for="password") Password
         input(type="password", name="password", id="password", required, pattern="^([\w-]+)$", minlength=6, maxlength=16, role="presentation", autocomplete="new-password")
         label(for="cpassword") Confirm Password

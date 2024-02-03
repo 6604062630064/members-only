@@ -16,4 +16,8 @@ router.post("/logout", controller.logout_post);
 router.post("/register", controller.signup_post);
 router.post("/secret", controller.secretPage_post);
 router.post("/create", controller.createPost_post);
+
+router.get("*", function (req, res, next) {
+	res.sendStatus(404);
+});
 module.exports = router;
